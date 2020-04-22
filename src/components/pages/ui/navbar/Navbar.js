@@ -8,8 +8,8 @@ const Navigation = () => {
         <Navbar bg="primary" variant="dark" expand="md">
             <Navbar.Brand href="#home">FeedMe!</Navbar.Brand>
             <Nav className="ml-auto">
-                <Nav.Link href="#inicio">Inicio</Nav.Link>
-                <Nav.Link href="#alimentos">Alimentos</Nav.Link>
+                <Nav.Link href="/">Inicio</Nav.Link>
+                <Nav.Link href="/alimentos">Alimentos</Nav.Link>
             </Nav>
         </Navbar>
 
