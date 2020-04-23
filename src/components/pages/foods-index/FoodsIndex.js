@@ -1,30 +1,47 @@
-import React, {Component} from 'react';
-import {Container, Table} from 'react-bootstrap'; 
+import React, { Component } from 'react';
+import { Container, Table } from 'react-bootstrap';
 
-
+import { Link } from 'react-router-dom';
 
 
 class FoodsIndex extends Component {
 
-  constructor(){
-      this.state = {foods: foodsArray}
-  }
+    constructor() {
+        super()
+        this.state = { foods: undefined }
+    }
+
+    componentDidMount() {
+
+        fetch('http://react-webinar.herokuapp.com/')
+            .then(response => response.json())
+            .then(foodsArray => this.setState({ foods: foodsArray }))
+
+    }
 
 
-    render(){
+    render() {
         return (
             <Container>
-            <h1>Listado de Alimentos</h1>
+                <h1>Listado de Alimentos</h1>
 
-            <Table>
-            {this.state.foods.map(food => <tr>
-                <td><img src={`/img/${food.img}`} alt={food.name}></img></td>
-                <td><p>{food.name}</p></td>    
-                <td><p>Precio: {food.price} | Stock: {food.stock} | Kcal: {food.Kcal}</p></td>
-                <td><a href="/detalles">Detalles</a></td>
-                </tr>)}
+                {this.state.foods ?
 
-                </Table>
+                    <Table bordered>
+                        <tbody>
+                            {this.state.foods.map(food =>
+                                <tr>
+                                    <td> <img src={`/img/${food.img}`}  alt={food.name} /> </td>
+                                    <td> <p>{food.name}</p> </td>
+                                    <td> <p><small>Precio: {food.price}€ | Stock: {food.stock} uds. | Kcal: {food.kcal}/100g</small></p> </td>
+                                    <td> <Link className="btn btn-sm btn-outline-primary" to={`/detalles/${food._id}`}>Detalles</Link> </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                    :
+                    <p>Cargando...</p>
+                }
             </Container>
         )
     }
