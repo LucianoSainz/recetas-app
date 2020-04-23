@@ -51,15 +51,9 @@ class FoodDetails extends Component {
                             <Tab eventKey="Stock" title="Stock">
                                 <h3>Stock</h3>
                                 <hr />
-                                <p>Informacion nutricional por 100g:</p>
-                                <ul>
-                                    <li>Calorias: {this.state.food.kcal}</li>
-                                    <li>Proteinas:{this.state.food.protein}</li>
-                                    <li>Grasas:{this.state.food.fat}</li>
-                                    <li>Carbohidratos: {this.state.food.carbs}</li>
-                                </ul>
+                                <p>Stock actual: {this.state.food.stock} unidades en stock</p>
                             </Tab>
-
+                        </Tabs>
                     </Col>
                 </Row>
             </Container>
